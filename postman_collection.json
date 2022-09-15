@@ -1,0 +1,391 @@
+{
+	"info": {
+		"_postman_id": "38bfd69d-0343-4fa0-8a20-cf2aa4ffd95f",
+		"name": "Taskeep",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18777166"
+	},
+	"item": [
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "Get Tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/tasks",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"tasks"
+							]
+						},
+						"description": "GET /tasks\n\nNo es necesario ninguna informacion extra.\n\nesto devuelve todas las tareas creadas de todos los usuarios"
+					},
+					"response": []
+				},
+				{
+					"name": "Post Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlYzZjMzE0LWZlY2ItNDUzYy1hYTE4LTc0NTMxNjI0MDg4ZCIsImlhdCI6MTY2MDAyMTQyMywiZXhwIjoxNjYwMTA3ODIzfQ.2ZXpkwo8yyFON1Ykj659CnDUAFLTFt-TI2IcnLoIV7I",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"comprar en la IRIS\",\r\n    \"reminder\": \"19-18-1988_09:30-10:20\",\r\n    \"expiration_date\": \"20-19-1988\",\r\n    \"repeat\": \"Only_monday\",\r\n    \"notes\": \"si hay lechuga compra tomates\",\r\n    \"listid\": 3\r\n   \r\n}"
+						},
+						"url": {
+							"raw": "localhost:4000/task/aec6c314-fecb-453c-aa18-74531624088d",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"task",
+								"aec6c314-fecb-453c-aa18-74531624088d"
+							]
+						},
+						"description": "POST /task/:id\n\nEn este POST es necesario pasar por params el ID de User\n\ncomo asi tambien el token por Header mediante \"x-access-token\"\n\nStartFragmeEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/task/49a2606d-96d8-49aa-bbfa-3d4e4c35fea9",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"task",
+								"49a2606d-96d8-49aa-bbfa-3d4e4c35fea9"
+							]
+						},
+						"description": "GET /task/:id\n\nTraer una tarea mediante su ID por Params"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhlZjE0YTNjLTAxNDMtNDU3Yi05OGI0LWVmYjZlM2Q2N2U1NCIsImlhdCI6MTY2MDAyNDUwMSwiZXhwIjoxNjYwMTEwOTAxfQ.XpI6YJyTv526srPpjdDz83gNDJgupaAJh2hpJihOZTg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/task/7",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"task",
+								"7"
+							]
+						},
+						"description": "DELETE /task/:id\n\nelimina la tarea que tenga el id recibido por params, ademas es necesario el token por Header"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List",
+			"item": [
+				{
+					"name": "Get Lists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/lists",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"lists"
+							]
+						},
+						"description": "GET /lists\n\nno es necesario ninguna informacion extra, devuelve todas las listas con sus respectivos datos"
+					},
+					"response": []
+				},
+				{
+					"name": "Post List",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Limpieza\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/list",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"list"
+							]
+						},
+						"description": "POST /list\n\nCreador de lista, es necesario pasar el Token por Header \"x-access-token\".\n\nsolo se tiene que pasar \"name\""
+					},
+					"response": []
+				},
+				{
+					"name": "Get List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/list/3/tasks",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"list",
+								"3",
+								"tasks"
+							]
+						},
+						"description": "GET /list/3/tasks\n\ndevuelve todas las tareas asignadas a una lista inclusive los de distintos usuarios"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete List",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhlZjE0YTNjLTAxNDMtNDU3Yi05OGI0LWVmYjZlM2Q2N2U1NCIsImlhdCI6MTY2MDAyNDUwMSwiZXhwIjoxNjYwMTEwOTAxfQ.XpI6YJyTv526srPpjdDz83gNDJgupaAJh2hpJihOZTg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/list/3",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"list",
+								"3"
+							]
+						},
+						"description": "DELETE /list/:id\n\nelimina la lista que tenga el id recibido por params, es necesario el token por header"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/users",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users"
+							]
+						},
+						"description": "GET /users\n\ndevuelve todos los usuarios registrados"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "GET /user/:id\n\ndevuelve toda la info de un solo usuario consultado mediante params"
+					},
+					"response": []
+				},
+				{
+					"name": "Put User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlYzZjMzE0LWZlY2ItNDUzYy1hYTE4LTc0NTMxNjI0MDg4ZCIsImlhdCI6MTY2MDAyMzI5MywiZXhwIjoxNjYwMTA5NjkzfQ.-fYYvOjY6BG1jFOWW3YJxVqR1ZtO-G_7ZrhIMqhxxig",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"DonPepito\",\r\n    \"collaborative_account\": false,\r\n        \"request_send\": \"Magoya\",\r\n        \"request_received\": \"Cadorna\",\r\n        \"collaborators\": \"Pepito\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:4000/user/aec6c314-fecb-453c-aa18-74531624088d",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"aec6c314-fecb-453c-aa18-74531624088d"
+							]
+						},
+						"description": "PUT /user/:id\n\nruta para actualizar el usuario pasado por params es necesario pasar el token por header \"x-access-token\""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlYzZjMzE0LWZlY2ItNDUzYy1hYTE4LTc0NTMxNjI0MDg4ZCIsImlhdCI6MTY2MDAyMzI5MywiZXhwIjoxNjYwMTA5NjkzfQ.-fYYvOjY6BG1jFOWW3YJxVqR1ZtO-G_7ZrhIMqhxxig",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/user/aec6c314-fecb-453c-aa18-74531624088d",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"aec6c314-fecb-453c-aa18-74531624088d"
+							]
+						},
+						"description": "DELETE /user/:id\n\nelimina un usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "Get UserTasks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhlZjE0YTNjLTAxNDMtNDU3Yi05OGI0LWVmYjZlM2Q2N2U1NCIsImlhdCI6MTY2MDAyNDUwMSwiZXhwIjoxNjYwMTEwOTAxfQ.XpI6YJyTv526srPpjdDz83gNDJgupaAJh2hpJihOZTg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/user/e8257224-3c32-46c6-b122-31276a388cb7/tasks",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"e8257224-3c32-46c6-b122-31276a388cb7",
+								"tasks"
+							]
+						},
+						"description": "GET /user/:id/tasks\n\ndevuelte todas las tareas de un usuario pasado por params. necesita el token por Header \"x-access-token\""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post SignUp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"PabloCarranza\",\r\n    \"password\": \"leruleru99\",\r\n    \"collaborative_account\": false\r\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post SignIn",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"PabloCarranza\",\r\n    \"password\": \"leruleru99\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/signin",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"signin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
