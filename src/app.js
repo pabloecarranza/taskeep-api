@@ -13,13 +13,13 @@ app.use(express.json());
 
 const corsOptions ={
    origin:'*', 
-   credentials:true,            //access-control-allow-credentials:true
+   credentials:true,        
    optionSuccessStatus:200,
 }
 app.use(cors(corsOptions))
 app.use(cookieParser("SECRET"));
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://taskeep.vercel.app");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", true);
   res.header(
     "Access-Control-Allow-Headers",
