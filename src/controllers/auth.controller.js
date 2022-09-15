@@ -8,11 +8,6 @@ export const signUp = async (req, res) => {
   const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
   const parsedName = username.trim().replace(/ /g, "");
 
- export const signUp = async (req, res) => {
-  const { username, password, email } = req.body;
-  const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-  const parsedName = username.trim().replace(/ /g, "");
-
   if (userFound)
     return res
       .status(401)
