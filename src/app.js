@@ -10,16 +10,16 @@ import cookieParser from "cookie-parser";
 const app = express();
 app.use(express.json());
 
-const corsOptions = {
-  origin: true, //included origin as true
-  credentials: true, //included credentials as true
-};
 
-app.use(cors({ credentials: true, origin: true }));
-
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+app.use(cors(corsOptions))
 app.use(cookieParser("SECRET"));
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://taskeep.vercel.app");
+  res.header("Access-Control-Allow-Origin", "http://taskeep.vercel.app");
   res.header("Access-Control-Allow-Credentials", true);
   res.header(
     "Access-Control-Allow-Headers",
