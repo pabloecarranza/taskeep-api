@@ -10,13 +10,7 @@ import cookieParser from "cookie-parser";
 const app = express();
 app.use(express.json());
 
-
-const corsOptions ={
-   origin:'*', 
-   credentials:true,        
-   optionSuccessStatus:200,
-}
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(cookieParser("SECRET"));
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
