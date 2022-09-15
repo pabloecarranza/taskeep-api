@@ -10,19 +10,24 @@ import cookieParser from "cookie-parser";
 const app = express();
 app.use(express.json());
 
-const allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept");
+const corsOptions = {
+  origin: true, //included origin as true
+  credentials: true, //included credentials as true
+};
 
-    next();
-}
+app.use(cors({ credentials: true, origin: true }));
 
-app.use(cors());
-app.options('*', cors());
-app.use(allowCrossDomain);
 app.use(cookieParser("SECRET"));
-
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", req.headers.origin);
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
+});
 
 app.use(authRoutes);
 app.use(usersRoutes);
