@@ -8,11 +8,11 @@ export const signUp = async (req, res) => {
   const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
   const parsedName = username.trim().replace(/ /g, "");
 
-  const userFound = await User.findOne({
-    where: {
-      username: parsedName,
-    },
-  });
+ export const signUp = async (req, res) => {
+  const { username, password, email } = req.body;
+  const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+  const parsedName = username.trim().replace(/ /g, "");
+
   if (userFound)
     return res
       .status(401)
@@ -30,21 +30,23 @@ export const signUp = async (req, res) => {
     password: await User.prototype.encryptPassword(password),
   });
 
+  const userFound = await User.findOne({
+    where: {
+      username: parsedName,
+    },
+  });
+
   const token = Jwt.sign({ id: NewUser.id }, config.SECRET, {
     expiresIn: 84600,
   });
 
-  const serialized = serialize("auth-token", token, {
-    httpOnly: false,
-    secure: true,
-    sameSite: "none",
-    maxAge: 1000 * 60 * 60 * 24 * 30,
-    path: "/",
+  res.json({
+    message: "Sign up successfully",
+    id: userFound.id,
+    username: userFound.username,
+    email: userFound.email,
+    token: token,
   });
-
-  res.setHeader("Set-Cookie", serialized);
-
-  res.status(200).json({ message: "Sign up successfully" });
 };
 
 export const signIn = async (req, res) => {
