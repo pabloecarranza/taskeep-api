@@ -8,22 +8,11 @@ export const signUp = async (req, res) => {
   const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
   const parsedName = username.trim().replace(/ /g, "");
 
-  if (userFound)
-    return res
-      .status(401)
-      .json({ message: "User already exists, please choose another name" });
-
   if (!validEmail.test(email)) {
     return res
       .status(401)
       .json({ message: "Please enter a valid email address " });
   }
-
-  const NewUser = await User.create({
-    username: parsedName,
-    email,
-    password: await User.prototype.encryptPassword(password),
-  });
 
   const userFound = await User.findOne({
     where: {
@@ -31,17 +20,29 @@ export const signUp = async (req, res) => {
     },
   });
 
-  const token = Jwt.sign({ id: NewUser.id }, config.SECRET, {
-    expiresIn: 84600,
-  });
+  if (userFound) {
+    return res
+      .status(401)
+      .json({ message: "User already exists, please choose another name" });
+  } else {
+    const NewUser = await User.create({
+      username: parsedName,
+      email,
+      password: await User.prototype.encryptPassword(password),
+    });
 
-  res.json({
-    message: "Sign up successfully",
-    id: userFound.id,
-    username: userFound.username,
-    email: userFound.email,
-    token: token,
-  });
+    const token = Jwt.sign({ id: NewUser.id }, config.SECRET, {
+      expiresIn: 84600,
+    });
+
+    res.json({
+      message: "Sign up successfully",
+      id: NewUser.id,
+      username: NewUser.username,
+      email: NewUser.email,
+      token: token,
+    });
+  }
 };
 
 export const signIn = async (req, res) => {
@@ -66,8 +67,6 @@ export const signIn = async (req, res) => {
   const token = Jwt.sign({ id: userFound.id }, config.SECRET, {
     expiresIn: 86400,
   });
-
-  /*  res.send("cookieName", token, { sameSite: "none", secure: true }); */
 
   res.json({
     message: "Login successfully",
