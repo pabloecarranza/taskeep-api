@@ -41,6 +41,7 @@ export const signUp = async (req, res) => {
       username: NewUser.username,
       email: NewUser.email,
       token: token,
+      logged: true,
     });
   }
 };
@@ -74,6 +75,7 @@ export const signIn = async (req, res) => {
     username: userFound.username,
     email: userFound.email,
     token: token,
+    logged: true,
   });
 };
 

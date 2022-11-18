@@ -5,8 +5,7 @@ export const createList = async (req, res) => {
   try {
     const { name } = req.body;
     const parsedList = name.trim().replace(/ /g, "").toLowerCase();
-    console.log(name);
-    console.log(parsedList);
+
     const listFound = await List.findOne({
       where: {
         name: parsedList,

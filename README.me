@@ -1,23 +1,54 @@
-App Taskeep
+BACKEND App Taskeep 
 
-Organizador de Tareas PRO
-permite agregar tareas con las siguientes opciones:
--Establecer la importancia
--recordatorio
--fecha de caducidad
--repetir
--notas Extras
--Lista
+Backend realizado en NodeJS con Express como enrutador y mediante Sequelize como ORM de la base de datos relacional en Postgres
 
-ademas tiene una opcion de trabajo colaborativo, pudiendo asignar tareas a otros usuarios y ver las asignadas al nuestro
+AUTENTICACION DE USUARIOS
 
-FRONTEND
-Proyecto inicializado mediante Vite para el Frontend con React como libreria, Redux Toolkit para el manejo de la informacion y como libreria de estilo ChakraUI
+Registracion: Se puede registrar mediante nombre de usuario, contraseña y email.
+-contiene una validación para ingresar correctamente un correo electronico.
+-se verifica que el nuevo nombre de usuario no exista previamente en la base de datos.
+-se genera un nuevo token mediante JWT
 
-* se configuró ESLint junto con Prettier para manejo de errores y ordenamiento de codigo.
+Inicio de Sesion:
+-se comprueba que el usuario exista en la base de datos en caso que exista se verifica que coincida la contraseña y se devuelve el token(JWT)  
 
-BACKEND
-inicializado mediante NodeJS con Express junto con Sequelize como ORM de PostgreSQL
+LISTAS DE TAREAS
 
-*se utilizó JWT para la autenticacion de usuarios y proteccion de rutas
+Creacion de Listas: 
+se puede agregar una lista de tareas
+verificando que no exista previamente una lista con el mismo nombre
+
+Obtención de Listas: se puede obtener un listado de todas las listas agregadas en la base de datos
+
+Obtención de una lista: mediante el Id de una lista se puede obtener todos sus datos correspondientes.
+
+Obtención de lista con sus tareas: mediante un Id de lista se puede obtener todas las tareas asignadas a dicha lista.
+
+Actualizar lista: Mediante el Id de una lista se puede modificar todos sus datos.
+
+Borrar Lista: Mediante el Id de una lista se puede borrar la lista y todas las tareas asignadas a dicha lista.
+
+
+TAREAS: 
+Creacion de Tarea:
+mediante el userId se puede crear una nueva tarea en la base de datos.
+
+Obtención de todas las tareas: 
+se puede obtener de la base de datos todas las tareas
+
+Obtención de tarea:
+mediante el id se puede obtener una tarea con toda su informacion.
+
+Actualización de tarea:
+mediante el id se puede actualizar toda la informacion de dicha tarea.
+
+Eliminacion de tarea:
+mediante el id se puede borrar dicha tarea con su respectiva informacion.
+
+
+
+
+
+
+
 

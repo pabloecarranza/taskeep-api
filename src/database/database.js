@@ -1,17 +1,12 @@
 import Sequelize from "sequelize";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const sequelize = new Sequelize({
-  username: "postgres",
-  password: "Lccompu8888.",
-  database: "postgres",
-  host: "taskeep.c8rsft1yir2n.sa-east-1.rds.amazonaws.com",
-
+  username: process.env.USER_NAME,
+  password: process.env.PASSWORD,
+  database: process.env.DB_NAME,
+  host: process.env.HOST,
   dialect: "postgres",
   storage: ":memory:",
 });
-
-/* import Sequelize from "sequelize";
-
-export const sequelize = new Sequelize(
-  "postgres://postgres:1234@localhost:5432/taskeep"
-);  */
