@@ -10,16 +10,17 @@ import cookieParser from "cookie-parser";
 const app = express();
 app.use(express.json());
 
+const cors = require("cors");
 const corsOptions = {
-  origin: true, //included origin as true
-  credentials: true, //included credentials as true
+  origin: "*",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
 };
 
-app.use(cors({ credentials: true, origin: true }));
-
+app.use(cors(corsOptions));
 app.use(cookieParser("SECRET"));
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+/*app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", req.headers.origin);
   res.header("Access-Control-Allow-Credentials", true);
   res.header(
     "Access-Control-Allow-Headers",
@@ -27,7 +28,7 @@ app.use(function (req, res, next) {
   );
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
-});
+});*/
 
 app.use(authRoutes);
 app.use(usersRoutes);
